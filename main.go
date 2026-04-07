@@ -286,7 +286,7 @@ func deleteTaskWeb(w http.ResponseWriter, r *http.Request) {
 }
 
 // API: GET /tasks
-func getTasks(w http.ResponseWriter, r *http.Request) {
+func getTasks(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(tasks)
 }
