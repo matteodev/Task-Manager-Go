@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>New Task</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container mt-5">
+            {{if .Task}}
+            <h1>{{.Titolo}}</h1>
+            {{else}}
+            <h1>Create New Task</h1>
+            {{end}}
+            <form action="{{if .Task}}/tasks/{{.Task.ID}}/edit{{else}}/tasks{{end}}"  method="POST">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" required value="{{if .Task}}{{.Task.Title}}{{end}}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{if .Task}}{{.Task.Description}}{{end}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">{{if .Task}}Update Task{{else}}Create Task{{end}}</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='/'">Cancel</button>
+            </form>
+        </div>
+    </body>
+</html>
